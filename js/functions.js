@@ -39,6 +39,6 @@ const getNumber = (str) => {
 // console.log(getNumber(1.5)); // 15
 /* eslint-enable */
 
-stringLength();
-palindrome();
-getNumber();
+stringLength('Кекс', 3);
+palindrome('Топот');
+getNumber('1 кефир, 0.5 батона');
