@@ -1,7 +1,7 @@
 const stringLength = (string, length) => string.length <= length;
 
 // eslint-disable-next-line
-console.log(stringLength('Кекс', 3));
+// console.log(stringLength('Кекс', 3));
 
 const palindrome = (string) => {
   const newString = string.replaceAll(' ','').toLowerCase();
@@ -13,8 +13,8 @@ const palindrome = (string) => {
 };
 
 /* eslint-disable */
-console.log(palindrome("Топот"));
-console.log(palindrome('Лёша на полке клопа нашёл'));
+// console.log(palindrome("Топот"));
+// console.log(palindrome('Лёша на полке клопа нашёл'));
 /* eslint-enable */
 
 const getNumber = (str) => {
@@ -29,12 +29,16 @@ const getNumber = (str) => {
 };
 
 /* eslint-disable */
-console.log(getNumber('2023 год')); // 2023
-console.log(getNumber('ECMAScript 2022')); // 2022
-console.log(getNumber('1 кефир, 0.5 батона')); // 105
-console.log(getNumber('агент 007')); // 7
-console.log(getNumber('а я томат')); // NaN
-console.log(getNumber(" ")); //NaN
-console.log(getNumber(-1)); // 1
-console.log(getNumber(1.5)); // 15
+// console.log(getNumber('2023 год')); // 2023
+// console.log(getNumber('ECMAScript 2022')); // 2022
+// console.log(getNumber('1 кефир, 0.5 батона')); // 105
+// console.log(getNumber('агент 007')); // 7
+// console.log(getNumber('а я томат')); // NaN
+// console.log(getNumber(" ")); //NaN
+// console.log(getNumber(-1)); // 1
+// console.log(getNumber(1.5)); // 15
 /* eslint-enable */
+
+stringLength('Кекс', 3);
+palindrome('Топот');
+getNumber('1 кефир, 0.5 батона');
