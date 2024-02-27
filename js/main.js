@@ -62,34 +62,19 @@ const DESCRIPTION = [
   'Разноцветные фейерверки, освещающие ночное небо яркими огнями.',
 ];
 
+const AVATAR_MIN = 1;
 const AVATAR_MAX = 6;
 const LIKES_MIN = 15;
 const LIKES_MAX = 200;
+const COMMENTS_MIN = 0;
 const COMMENTS_MAX = 30;
 const MAX_NUMBER_PHOTO_ID = 25;
-const MAX_NUMBER_PHOTO_NAME = 25;
 
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
   const result = Math.random() * (upper - lower + 1) + lower; // не понимаю эту запись , что тут происходит и для чего.
   return Math.floor(result);
-};
-
-const createRandomGenerator = (min, max) => {
-  const previousValues = [];
-
-  return function () {
-    let currentValue = getRandomInteger(min, max);
-    if (previousValues.length >= (max - min + 1)) {
-      return null;
-    }
-    while (previousValues.includes(currentValue)) {
-      currentValue = getRandomInteger(min, max);
-    }
-    previousValues.push(currentValue);
-    return currentValue;
-  };
 };
 
 const createId = () => {
@@ -100,14 +85,14 @@ const createId = () => {
   };
 };
 
-const generatePhotoId = createRandomGenerator(1, MAX_NUMBER_PHOTO_ID);
-const generatePhotoName = createRandomGenerator(1, MAX_NUMBER_PHOTO_NAME);
-const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 const commentsId = createId();
+const generatePhotoId = createId();
+const generatePhotoName = createId();
+const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
 const createComments = () =>({
   id: commentsId(),
-  avatar: `img/avatar-${ getRandomInteger(1, AVATAR_MAX) }.svg.`,
+  avatar: `img/avatar-${ getRandomInteger(AVATAR_MIN, AVATAR_MAX) }.svg.`,
   message: getRandomArrayElement(MASSEGES),
   name: getRandomArrayElement(NAMES),
 });
@@ -117,8 +102,11 @@ const createPhoto = () => ({
   url: `photos/${ generatePhotoName() }.jpg`,
   description: getRandomArrayElement(DESCRIPTION),
   likes: getRandomInteger(LIKES_MIN, LIKES_MAX),
-  comments:  Array.from({ length: getRandomInteger(0, COMMENTS_MAX) }, createComments)
+  comments:  Array.from({ length: getRandomInteger(COMMENTS_MIN, COMMENTS_MAX) }, createComments)
 });
 
-// eslint-disable-next-line
-const photoItems = Array.from({ length: MAX_NUMBER_PHOTO_ID }, createPhoto);
+
+const photoItems = () => Array.from({ length: MAX_NUMBER_PHOTO_ID }, createPhoto);
+
+
+photoItems();
