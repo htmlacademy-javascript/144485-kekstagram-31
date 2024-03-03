@@ -26,7 +26,7 @@ const NAMES = [
   'Роман'
 ];
 
-const MASSEGES = [
+const MESSAGES = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -62,4 +62,4 @@ const DESCRIPTION = [
   'Разноцветные фейерверки, освещающие ночное небо яркими огнями.',
 ];
 
-export {NAMES, MASSEGES, DESCRIPTION};
+export {NAMES, MESSAGES, DESCRIPTION};
