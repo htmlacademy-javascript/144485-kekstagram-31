@@ -1,5 +1,5 @@
-import {getRandomInteger, createId, getRandomArrayElement} from '../util/util';
-import {NAMES, MESSAGES} from '../data/data';
+import {getRandomInteger, createId, getRandomArrayElement} from '../util';
+import {NAMES, MESSAGES} from '../data';
 
 
 const AVATAR_MIN = 1;

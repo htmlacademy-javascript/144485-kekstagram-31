@@ -1,6 +1,6 @@
-import {getRandomInteger, createId, getRandomArrayElement} from '../util/util';
-import {DESCRIPTION} from '../data/data';
-import {generateComment} from '../generat-data/createComments';
+import {getRandomInteger, createId, getRandomArrayElement} from '../util';
+import {DESCRIPTION} from '../data';
+import {generateComment} from './createComments';
 
 
 const LIKES_MIN = 15;

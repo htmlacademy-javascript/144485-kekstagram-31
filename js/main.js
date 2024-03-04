@@ -1,5 +1,3 @@
-import {photoItems} from './generat-data/createPhoto';
+import {photoItems} from './generate-data';
 
 photoItems();
-
-
