@@ -3,7 +3,7 @@ import {photoItems} from '../generate-data';
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictureList = document.querySelector('.pictures');
 const createPhotoUsers = photoItems();
-const ListFragmentPhoto = document.createDocumentFragment();
+const listFragmentPhoto = document.createDocumentFragment();
 
 createPhotoUsers.forEach(({url, description,likes,comments}) => {
   const pictureItem = pictureTemplate.cloneNode(true);
@@ -11,7 +11,7 @@ createPhotoUsers.forEach(({url, description,likes,comments}) => {
   pictureItem.querySelector('.picture__img').alt = description;
   pictureItem.querySelector('.picture__likes').textContent = likes;
   pictureItem.querySelector('.picture__comments').textContent = comments.length;
-  ListFragmentPhoto.appendChild(pictureItem);
+  listFragmentPhoto.appendChild(pictureItem);
 });
 
-export const addPhotoThumbnailsUsers = () => pictureList.appendChild(ListFragmentPhoto);
+export const addPhotoThumbnailsUsers = () => pictureList.appendChild(listFragmentPhoto);
