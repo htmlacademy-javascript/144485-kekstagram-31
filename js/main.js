@@ -1,3 +1,4 @@
-import {photoItems} from './generate-data';
+import {addPhotoThumbnailsUsers} from './create-thumbnails';
+import './showLargePicture';
 
-photoItems();
+addPhotoThumbnailsUsers();
