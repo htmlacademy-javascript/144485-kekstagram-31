@@ -1,6 +1,7 @@
 import {photoItems} from '../generate-data';
 import {onOpenBigPicture } from '../showLargePicture';
 
+
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictureList = document.querySelector('.pictures');
 const createPhotoUsers = photoItems();
@@ -20,6 +21,7 @@ const addPhotoThumbnailsUsers = () => {
     pictureItem.addEventListener('click', (evt) =>{
       evt.preventDefault();
       onOpenBigPicture(element);
+
     });
 
   });

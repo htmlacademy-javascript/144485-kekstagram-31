@@ -1,4 +1,4 @@
-import {buttonShowMore, socialCommentsList} from './elementVariables';
+import {buttonShowMore, socialCommentsList, commentShownCount} from './elementVariables';
 
 
 const createComment = (comments) => {
@@ -20,16 +20,21 @@ const createComment = (comments) => {
   return socialComment;
 };
 
-const onShowMoreComments = (element, minLimit) =>{
-  const limit = minLimit;
-  const commentsList = element.slice(0, limit);
-
+const onShowMoreComments = (element) =>{
+  let limit = 5;
+  const commentsList = element.splice(0, limit);
+  const socialCommentChild = socialCommentsList.children;
+  commentShownCount.textContent = socialCommentChild.length;
 
   commentsList.forEach((item) =>{
     const commentElement = createComment(item);
     socialCommentsList.append(commentElement);
+    commentShownCount.textContent = socialCommentChild.length;
   });
-
+  buttonShowMore.addEventListener('click', () =>{
+    limit += 5;
+    onShowMoreComments(element);
+  });
 
 };
 
@@ -41,8 +46,5 @@ const renderComments = (element, limit) => {
 
 };
 
-
-buttonShowMore.addEventListener('click', () =>{
-});
 
 export {renderComments};
