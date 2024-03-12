@@ -1,6 +1,6 @@
 import {buttonShowMore, socialCommentsList, commentShownCount, socialCommentChild} from './elementVariables';
 const LIMITED_DISPLAY_COMMENTS = 5;
-let arrayComments = [];
+const arrayComments = [];
 
 
 const createComment = (comments) => {
@@ -34,12 +34,17 @@ const onShowMoreComments = () =>{
     commentShownCount.textContent = socialCommentChild.length;
   });
 
+  if(socialCommentChild.length === arrayComments.length){
+    buttonShowMore.classList.add('hidden');
+  }
+
 };
 
 buttonShowMore.addEventListener('click', onShowMoreComments);
 
 const renderComments = (element) => {
-  arrayComments = element;
+  arrayComments.splice(0, arrayComments.length) ;
+  arrayComments.push(...element);
   socialCommentsList.innerHTML = '';
   onShowMoreComments();
 };
