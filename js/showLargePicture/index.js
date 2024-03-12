@@ -1,4 +1,4 @@
-import { bigPictureBlock, bigPictureCancel, bigPictureImg, likesCount, commentTotalCount, socialCaption, socialCommentsList} from './elementVariables';
+import { bigPictureBlock, bigPictureCancel, bigPictureImg, likesCount, commentTotalCount, socialCaption, socialCommentsList, buttonShowMore} from './elementVariables';
 import {renderComments} from './createComments';
 
 
@@ -10,6 +10,8 @@ const toggleClass = (isOpened = true) =>{
 const onCloseBigPicture = () => {
   toggleClass(false);
   socialCommentsList.innerHTML = '';
+  buttonShowMore.classList.remove('hidden');
+
   bigPictureCancel.removeEventListener('click', onCloseBigPicture);
 };
 
@@ -23,10 +25,9 @@ const addInformation = ({url, description, likes, comments}) =>{
 };
 
 const onOpenBigPicture = (element) => {
-  const limited = 5;
   addInformation(element);
   toggleClass();
-  renderComments(element.comments, limited);
+  renderComments(element.comments);
 
   bigPictureCancel.addEventListener('click', onCloseBigPicture);
 };

@@ -21,7 +21,6 @@ const addPhotoThumbnailsUsers = () => {
     pictureItem.addEventListener('click', (evt) =>{
       evt.preventDefault();
       onOpenBigPicture(element);
-
     });
 
   });
