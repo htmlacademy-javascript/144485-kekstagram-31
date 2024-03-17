@@ -25,8 +25,9 @@ const addPhotoThumbnailsUsers = () => {
 
 pictureList.addEventListener('click', (evt) => {
   const target = evt.target;
-  if (target.classList.contains('picture__img')) {
-    const elementPhoto = createPhotoUsers.find((photo) => photo.id === +target.dataset.id);
+  if (target.closest('.picture')) {
+    evt.preventDefault();
+    const elementPhoto = createPhotoUsers.find((photo) => photo.id === Number(target.dataset.id));
     onOpenBigPicture(elementPhoto);
   }
 });

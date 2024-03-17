@@ -1,5 +1,5 @@
 import { bigPictureBlock, bigPictureCancel, bigPictureImg, likesCount, commentTotalCount, socialCaption, socialCommentsList, buttonShowMore} from './elementVariables';
-import {renderComments} from './createComments';
+import {renderComments, onShowMoreComments} from './createComments';
 
 
 const toggleClass = (isOpened = true) =>{
@@ -12,7 +12,9 @@ const onCloseBigPicture = () => {
   socialCommentsList.innerHTML = '';
   buttonShowMore.classList.remove('hidden');
 
+  buttonShowMore.removeEventListener('click', onShowMoreComments);
   bigPictureCancel.removeEventListener('click', onCloseBigPicture);
+  document.removeEventListener('keydown', onCloseBigPictureEsc);
 };
 
 
@@ -29,15 +31,17 @@ const onOpenBigPicture = (element) => {
   toggleClass();
   renderComments(element.comments);
 
+  document.addEventListener('keydown', onCloseBigPictureEsc);
   bigPictureCancel.addEventListener('click', onCloseBigPicture);
 };
 
-document.addEventListener('keydown', (evt) =>{
+function onCloseBigPictureEsc(evt){
   if(evt.key === 'Escape'){
     evt.preventDefault();
     onCloseBigPicture();
   }
-});
+}
+
 
 export {onOpenBigPicture};
 

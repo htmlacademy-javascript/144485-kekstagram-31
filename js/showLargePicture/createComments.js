@@ -17,7 +17,6 @@ const createComment = (comments) => {
   const socialText = document.createElement('p');
   socialText.classList.add('social__text');
   socialText.textContent = comments.message;
-
   socialComment.append(socialPicture, socialText);
   return socialComment;
 };
@@ -34,20 +33,24 @@ const onShowMoreComments = () =>{
     commentShownCount.textContent = socialCommentChild.length;
   });
 
-  if(socialCommentChild.length === arrayComments.length){
+  if(socialCommentChild.length === arrayComments.length || arrayComments.length === 0){
     buttonShowMore.classList.add('hidden');
   }
 
+  if(arrayComments.length === 0){
+    commentShownCount.textContent = 0;
+  }
 };
 
-buttonShowMore.addEventListener('click', onShowMoreComments);
 
 const renderComments = (element) => {
   arrayComments.splice(0, arrayComments.length) ;
   arrayComments.push(...element);
   socialCommentsList.innerHTML = '';
+
+  buttonShowMore.addEventListener('click', onShowMoreComments);
   onShowMoreComments();
 };
 
 
-export {renderComments};
+export {renderComments, onShowMoreComments};
