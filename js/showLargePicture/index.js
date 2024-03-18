@@ -1,14 +1,9 @@
 import { bigPictureBlock, bigPictureCancel, bigPictureImg, likesCount, commentTotalCount, socialCaption, socialCommentsList, buttonShowMore} from './elementVariables';
 import {renderComments, onShowMoreComments} from './createComments';
-
-
-const toggleClass = (isOpened = true) =>{
-  document.body.classList.toggle('modal-open');
-  bigPictureBlock.classList.toggle('hidden', !isOpened);
-};
+import {toggleClass} from '../util';
 
 const onCloseBigPicture = () => {
-  toggleClass(false);
+  toggleClass(bigPictureBlock, false);
   socialCommentsList.innerHTML = '';
   buttonShowMore.classList.remove('hidden');
 
@@ -28,7 +23,7 @@ const addInformation = ({url, description, likes, comments}) =>{
 
 const onOpenBigPicture = (element) => {
   addInformation(element);
-  toggleClass();
+  toggleClass(bigPictureBlock);
   renderComments(element.comments);
 
   document.addEventListener('keydown', onCloseBigPictureEsc);
