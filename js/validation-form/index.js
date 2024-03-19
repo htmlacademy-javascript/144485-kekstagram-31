@@ -4,17 +4,13 @@ export const commentForm = imgUploadForm.querySelector('.text__description');
 
 const HASHTAGS_LIMIT = 5;
 const COMMENTS_LIMIT = 140;
-
 const hashtagRegex = /^#[a-zа-яё0-9]{1,19}$/i;
+
 const onValidateCommentForm = (value) => value.length <= COMMENTS_LIMIT;
 
-const createHashtagArray = () => {
-  const inputHashtagValue = inputTextHashtag.value;
-  const arrayHashtag = inputHashtagValue.trim().toLowerCase().split(' ');
-  return arrayHashtag;
-};
+const createHashtagArray = () => inputTextHashtag.value.replace(/\s+/g, ' ').trim().toLowerCase().split(' ');
 
-const onValidateHashtagRegex = () =>{
+const onValidateHashtagRegex = () => {
   const arrayHashtag = createHashtagArray();
 
   if (arrayHashtag.length === 1 && arrayHashtag[0] === '') {
@@ -22,9 +18,9 @@ const onValidateHashtagRegex = () =>{
   }
 
   return arrayHashtag.every((item) => hashtagRegex.test(item));
-
 };
-const onUniqueHashtag = () =>{
+
+const onUniqueHashtag = () => {
   const arrayHashtag = createHashtagArray();
   return arrayHashtag.length === new Set(arrayHashtag).size;
 };
@@ -48,7 +44,7 @@ pristine.addValidator(commentForm, onValidateCommentForm, 'Длина комме
 
 imgUploadForm.addEventListener('submit', (evt) => {
   if(pristine.validate()) {
-    return imgUploadForm.submit();
+    imgUploadForm.submit();
   }
   evt.preventDefault();
 });

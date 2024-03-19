@@ -1,0 +1,28 @@
+const scaleControlSmaller = document.querySelector('.scale__control--smaller');
+const scaleControlBigger = document.querySelector('.scale__control--bigger');
+const scaleControlValue = document.querySelector('.scale__control--value');
+const uploaPreviewImage = document.querySelector('.img-upload__preview img');
+
+const STEP_SCALE = 25;
+const MIN_SCALE = 25;
+const MAX_SCALE = 100;
+
+
+const onIncreaseScale = () => {
+  const scaleValue = parseInt(scaleControlValue.value, 10);
+  const scaleCount = scaleValue + STEP_SCALE;
+  const scaleLimited = scaleValue >= MAX_SCALE ? MAX_SCALE : scaleCount;
+  scaleControlValue.value = `${scaleLimited}%`;
+  uploaPreviewImage.style.transform = `scale(${scaleLimited / 100})`;
+};
+
+const onDecreaseScale = () => {
+  const scaleValue = parseInt(scaleControlValue.value, 10);
+  const scaleCount = scaleValue - STEP_SCALE;
+  const scaleLimited = scaleValue <= MIN_SCALE ? MIN_SCALE : scaleCount;
+  scaleControlValue.value = `${scaleLimited}%`;
+  uploaPreviewImage.style.transform = `scale(${scaleLimited / 100})`;
+};
+
+scaleControlBigger.addEventListener('click', onIncreaseScale);
+scaleControlSmaller.addEventListener('click', onDecreaseScale);

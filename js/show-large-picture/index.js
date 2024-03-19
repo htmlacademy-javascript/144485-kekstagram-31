@@ -12,7 +12,6 @@ const onCloseBigPicture = () => {
   document.removeEventListener('keydown', onCloseBigPictureEsc);
 };
 
-
 const addInformation = ({url, description, likes, comments}) =>{
   bigPictureImg.src = url;
   bigPictureImg.alt = description;

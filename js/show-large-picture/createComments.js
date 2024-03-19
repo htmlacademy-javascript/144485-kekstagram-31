@@ -42,7 +42,6 @@ const onShowMoreComments = () =>{
   }
 };
 
-
 const renderComments = (element) => {
   arrayComments.splice(0, arrayComments.length) ;
   arrayComments.push(...element);
