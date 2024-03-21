@@ -12,11 +12,9 @@ const createHashtagArray = () => inputTextHashtag.value.replace(/\s+/g, ' ').tri
 
 const onValidateHashtagRegex = () => {
   const arrayHashtag = createHashtagArray();
-
   if (arrayHashtag.length === 1 && arrayHashtag[0] === '') {
     return true;
   }
-
   return arrayHashtag.every((item) => hashtagRegex.test(item));
 };
 
@@ -35,7 +33,7 @@ const pristine = new Pristine(imgUploadForm, {
   errorClass: 'img-upload__field-wrapper--error',
   successClass: 'img-upload__field-wrapper--valid',
   errorTextParent: 'img-upload__field-wrapper',
-}, true);
+});
 
 pristine.addValidator(inputTextHashtag, onValidateHashtagRegex, 'Введён невалидный хэштег');
 pristine.addValidator(inputTextHashtag, onUniqueHashtag, 'Хэштеги повторяются');

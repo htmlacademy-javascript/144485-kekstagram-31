@@ -6,7 +6,6 @@ const onCloseBigPicture = () => {
   toggleClass(bigPictureBlock, false);
   socialCommentsList.innerHTML = '';
   buttonShowMore.classList.remove('hidden');
-
   buttonShowMore.removeEventListener('click', onShowMoreComments);
   bigPictureCancel.removeEventListener('click', onCloseBigPicture);
   document.removeEventListener('keydown', onCloseBigPictureEsc);
@@ -24,7 +23,6 @@ const onOpenBigPicture = (element) => {
   addInformation(element);
   toggleClass(bigPictureBlock);
   renderComments(element.comments);
-
   document.addEventListener('keydown', onCloseBigPictureEsc);
   bigPictureCancel.addEventListener('click', onCloseBigPicture);
 };
@@ -35,7 +33,6 @@ function onCloseBigPictureEsc(evt){
     onCloseBigPicture();
   }
 }
-
 
 export {onOpenBigPicture};
 

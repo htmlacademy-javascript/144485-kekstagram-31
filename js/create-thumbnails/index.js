@@ -20,7 +20,6 @@ const addPhotoThumbnailsUsers = () => {
   });
 
   return pictureList.appendChild(listFragmentPhoto);
-
 };
 
 pictureList.addEventListener('click', (evt) => {
