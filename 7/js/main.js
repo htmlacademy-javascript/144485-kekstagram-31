@@ -1,5 +1,7 @@
 import {addPhotoThumbnailsUsers} from './create-thumbnails';
-import './uploadPhoto';
-import './validationForm';
+import './upload-photo';
+import './validation-form';
+import './add-affects';
+import './slider-affects';
 
 addPhotoThumbnailsUsers();

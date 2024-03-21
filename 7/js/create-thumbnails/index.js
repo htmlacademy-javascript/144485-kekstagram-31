@@ -1,5 +1,5 @@
 import {photoItems} from '../generate-data';
-import {onOpenBigPicture } from '../showLargePicture';
+import {onOpenBigPicture } from '../show-large-picture';
 
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictureList = document.querySelector('.pictures');
