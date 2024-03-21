@@ -7,7 +7,6 @@ const STEP_SCALE = 25;
 const MIN_SCALE = 25;
 const MAX_SCALE = 100;
 
-
 const onIncreaseScale = () => {
   const scaleValue = parseInt(scaleControlValue.value, 10);
   const scaleCount = scaleValue + STEP_SCALE;
