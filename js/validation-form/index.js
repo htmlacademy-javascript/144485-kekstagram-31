@@ -7,7 +7,6 @@ const COMMENTS_LIMIT = 140;
 const hashtagRegex = /^#[a-zа-яё0-9]{1,19}$/i;
 
 const onValidateCommentForm = (value) => value.length <= COMMENTS_LIMIT;
-
 const createHashtagArray = () => inputTextHashtag.value.replace(/\s+/g, ' ').trim().toLowerCase().split(' ');
 
 const onValidateHashtagRegex = () => {
@@ -40,9 +39,13 @@ pristine.addValidator(inputTextHashtag, onUniqueHashtag, 'Хэштеги пов�
 pristine.addValidator(inputTextHashtag, onHashtagLimitLength, 'Превышено количество хэштегов');
 pristine.addValidator(commentForm, onValidateCommentForm, 'Длина комментария больше 140 символов');
 
-imgUploadForm.addEventListener('submit', (evt) => {
-  if(pristine.validate()) {
-    imgUploadForm.submit();
-  }
-  evt.preventDefault();
-});
+const validateListener = () => {
+  imgUploadForm.addEventListener('submit', (evt) => {
+    if(pristine.validate()) {
+      imgUploadForm.submit();
+    }
+    evt.preventDefault();
+  });
+};
+
+export {validateListener};

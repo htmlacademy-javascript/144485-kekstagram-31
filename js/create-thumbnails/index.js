@@ -7,7 +7,6 @@ const createPhotoUsers = photoItems();
 
 const addPhotoThumbnailsUsers = () => {
   const listFragmentPhoto = document.createDocumentFragment();
-
   createPhotoUsers.forEach((element) => {
     const pictureItem = pictureTemplate.cloneNode(true);
     const pictureImage = pictureItem.querySelector('.picture__img');
@@ -18,7 +17,6 @@ const addPhotoThumbnailsUsers = () => {
     pictureItem.querySelector('.picture__comments').textContent = element.comments.length;
     listFragmentPhoto.appendChild(pictureItem);
   });
-
   return pictureList.appendChild(listFragmentPhoto);
 };
 

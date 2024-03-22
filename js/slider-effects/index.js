@@ -1,19 +1,30 @@
 import {effectLevelSliderParrent, effectLevelSlider, effectLevelInput, effectChecked, uploaPreviewImage} from './slider-variables';
+import {EFFECTS, DEFAULT_MIN, DEFAULT_MAX, DEFAULT_START } from './effect-data';
 
 const sliderVisableToggle = (isShown = true) => {
   effectLevelSliderParrent.classList.toggle('hidden', isShown);
 };
 
+const searhEffect = (value, array) => array.find((element) => element.name === value);
+
 noUiSlider.create(effectLevelSlider, {
   range: {
-    min: 0,
-    max: 100,
+    min: DEFAULT_MIN,
+    max: DEFAULT_MAX,
   },
-  start: 0,
+  start: DEFAULT_START,
   connect: 'lower'
 });
 
-const sliderUpdateOptions = (min, max, start, step, addStyleFunction) => {
+const sliderUpdateOptions = (value) => {
+  const effect = searhEffect(value, EFFECTS);
+  if(!effect){
+    sliderVisableToggle();
+    uploaPreviewImage.style.removeProperty('filter');
+    return;
+  }
+  const {min, max, start, step, unit} = effect;
+  sliderVisableToggle(false);
   effectLevelSlider.noUiSlider.updateOptions({
     range: {
       min: min,
@@ -23,44 +34,16 @@ const sliderUpdateOptions = (min, max, start, step, addStyleFunction) => {
     step: step
   });
   effectLevelSlider.noUiSlider.on('update', () => {
-    let effectLevelInputValue = effectLevelInput.value;
-    effectLevelInputValue = effectLevelSlider.noUiSlider.get();
+    const effectLevelInputValue = effectLevelSlider.noUiSlider.get();
     effectLevelInput.value = effectLevelInputValue;
-    uploaPreviewImage.style.filter = addStyleFunction(effectLevelInputValue);
+    uploaPreviewImage.style.filter = `${effect.style}(${effectLevelInputValue}${unit})`;
   });
 };
 
-effectChecked.addEventListener('change', (evt) => {
-  if (evt.target.checked) {
-    switch (evt.target.value) {
-      case 'chrome':
-        sliderVisableToggle(false);
-        sliderUpdateOptions(0, 1, 0, 0.1, (value) => `grayscale(${value})`);
-        break;
-
-      case 'sepia':
-        sliderVisableToggle(false);
-        sliderUpdateOptions(0, 1, 0, 0.1, (value) => `sepia(${value})`);
-        break;
-
-      case 'marvin':
-        sliderVisableToggle(false);
-        sliderUpdateOptions(0, 100, 0, 1, (value) => `invert(${value}%)`);
-        break;
-
-      case 'phobos':
-        sliderVisableToggle(false);
-        sliderUpdateOptions(0, 3, 0, 0.1, (value) => `blur(${value}px)`);
-        break;
-
-      case 'heat':
-        sliderVisableToggle(false);
-        sliderUpdateOptions(0, 3, 1, 0.1, (value) => `brightness(${value})`);
-        break;
-
-      default:
-        sliderVisableToggle();
-        uploaPreviewImage.style.removeProperty('filter');
+export const effectCheckedListener = () => {
+  effectChecked.addEventListener('change', (evt) => {
+    if (evt.target.checked) {
+      sliderUpdateOptions(evt.target.value);
     }
-  }
-});
+  });
+};

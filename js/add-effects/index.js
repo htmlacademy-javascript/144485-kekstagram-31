@@ -23,5 +23,9 @@ const onDecreaseScale = () => {
   uploaPreviewImage.style.transform = `scale(${scaleLimited / 100})`;
 };
 
-scaleControlBigger.addEventListener('click', onIncreaseScale);
-scaleControlSmaller.addEventListener('click', onDecreaseScale);
+const scaleListener = () => {
+  scaleControlBigger.addEventListener('click', onIncreaseScale);
+  scaleControlSmaller.addEventListener('click', onDecreaseScale);
+};
+
+export {scaleListener};

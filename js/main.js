@@ -1,7 +1,11 @@
 import {addPhotoThumbnailsUsers} from './create-thumbnails';
-import './upload-photo';
-import './validation-form';
-import './add-affects';
-import './slider-effects';
+import {onOpenChangePhotoListener} from './upload-photo';
+import {validateListener} from './validation-form';
+import {scaleListener} from './add-effects';
+import {effectCheckedListener} from './slider-effects';
 
+effectCheckedListener();
+scaleListener();
+validateListener();
+onOpenChangePhotoListener();
 addPhotoThumbnailsUsers();
