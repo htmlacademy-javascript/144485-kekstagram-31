@@ -10,7 +10,7 @@ export const EFFECTS = [
     max: 1,
     step: 0.1,
     start: 1,
-    unit: ' ',
+    unit: '',
   },
   {
     name: 'sepia',
@@ -19,7 +19,7 @@ export const EFFECTS = [
     max: 1,
     step: 0.1,
     start: 1,
-    unit: ' ',
+    unit: '',
   },
   {
     name: 'marvin',
@@ -46,6 +46,6 @@ export const EFFECTS = [
     max: 3,
     step: 0.1,
     start: 3,
-    unit: ' ',
+    unit: '',
   },
 ];
