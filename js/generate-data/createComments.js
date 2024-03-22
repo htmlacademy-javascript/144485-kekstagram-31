@@ -1,7 +1,6 @@
 import {getRandomInteger, createId, getRandomArrayElement} from '../util';
 import {NAMES, MESSAGES} from '../data';
 
-
 const AVATAR_MIN = 1;
 const AVATAR_MAX = 6;
 const COMMENTS_MIN = 0;

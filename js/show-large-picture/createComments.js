@@ -1,7 +1,7 @@
 import {buttonShowMore, socialCommentsList, commentShownCount, socialCommentChild} from './elementVariables';
+
 const LIMITED_DISPLAY_COMMENTS = 5;
 const arrayComments = [];
-
 
 const createComment = (comments) => {
   const socialComment = document.createElement('li');
@@ -42,15 +42,12 @@ const onShowMoreComments = () =>{
   }
 };
 
-
 const renderComments = (element) => {
   arrayComments.splice(0, arrayComments.length) ;
   arrayComments.push(...element);
   socialCommentsList.innerHTML = '';
-
   buttonShowMore.addEventListener('click', onShowMoreComments);
   onShowMoreComments();
 };
-
 
 export {renderComments, onShowMoreComments};

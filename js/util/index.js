@@ -1,4 +1,3 @@
-
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -16,5 +15,9 @@ const createId = () => {
 
 const getRandomArrayElement = (elements) => elements[getRandomInteger(0, elements.length - 1)];
 
+const toggleClass = (className, isOpened = true) =>{
+  className.classList.toggle('hidden', !isOpened);
+  document.body.classList.toggle('modal-open');
+};
 
-export {getRandomInteger, createId, getRandomArrayElement};
+export {getRandomInteger, createId, getRandomArrayElement, toggleClass};
