@@ -1,19 +1,18 @@
 import {toggleClass} from '../util';
 import {imgUploadInput, imgUpoadOverlay, imgUploadancel} from './uploadPhotoVariables';
-import {inputTextHashtag, commentForm} from '../validation-form';
-const effectsPreview = document.querySelectorAll('.effects__preview');
+import {inputTextHashtag, commentForm, imgUploadForm} from '../validation-form';
 
+const effectsPreview = document.querySelectorAll('.effects__preview');
 const effectLevelSliderParrent = document.querySelector('.img-upload__effect-level');
 const uploaPreviewImage = document.querySelector('.img-upload__preview img');
 
 const onCloseChangePhoto = () => {
   toggleClass(imgUpoadOverlay, false);
-  imgUploadInput.value = '';
+  imgUploadForm.reset();
   uploaPreviewImage.style.removeProperty('filter');
   uploaPreviewImage.style.removeProperty('transform');
   document.removeEventListener('keydown', onCloseChangePhotoEsc);
   imgUploadancel.removeEventListener('click', onCloseChangePhoto);
-
 };
 
 function onCloseChangePhotoEsc(evt){
@@ -54,11 +53,10 @@ const onOpenChangePhoto = (evt) => {
   effectLevelSliderParrent.classList.add('hidden');
   document.addEventListener('keydown', onCloseChangePhotoEsc);
   imgUploadancel.addEventListener('click', onCloseChangePhoto);
-
 };
 
 const onOpenChangePhotoListener = () => {
   imgUploadInput.addEventListener('change', onOpenChangePhoto);
 };
 
-export {onOpenChangePhotoListener};
+export {onOpenChangePhotoListener, onCloseChangePhoto, onCloseChangePhotoEsc};

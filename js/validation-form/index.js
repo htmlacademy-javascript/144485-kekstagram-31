@@ -1,4 +1,7 @@
-const imgUploadForm = document.querySelector('.img-upload__form');
+import {sendSuccessMessage, sendErrorMessage} from '../get-data';
+import {onCloseChangePhoto} from '../upload-photo';
+
+export const imgUploadForm = document.querySelector('.img-upload__form');
 export const inputTextHashtag = imgUploadForm.querySelector('.text__hashtags');
 export const commentForm = imgUploadForm.querySelector('.text__description');
 
@@ -40,12 +43,34 @@ pristine.addValidator(inputTextHashtag, onHashtagLimitLength, 'Превышен�
 pristine.addValidator(commentForm, onValidateCommentForm, 'Длина комментария больше 140 символов');
 
 const validateListener = () => {
+
   imgUploadForm.addEventListener('submit', (evt) => {
-    if(pristine.validate()) {
-      imgUploadForm.submit();
-    }
     evt.preventDefault();
+    if(pristine.validate()) {
+      fetch(
+        'https://31.javascript.htmlacademy.pro/kekstagram',
+        {
+          method: 'POST',
+          body: new FormData(evt.target),
+        })
+        .then((response) => {
+          if (response.ok) {
+            sendSuccessMessage();
+            onCloseChangePhoto();
+          }else{
+            throw new Error ();
+          }
+        })
+        .catch(() => {
+          throw new Error(
+            sendErrorMessage()
+          );
+        }
+        );
+    }
   });
 };
 
 export {validateListener};
+
+

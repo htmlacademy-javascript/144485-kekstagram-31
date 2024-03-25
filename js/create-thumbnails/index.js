@@ -1,13 +1,18 @@
-import {photoItems} from '../generate-data';
+// import {dataUserPhoto} from '../generate-data';
 import {onOpenBigPicture } from '../show-large-picture';
 
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictureList = document.querySelector('.pictures');
-const createPhotoUsers = photoItems();
+// const createPhotoUsers = dataUserPhoto;
 
-const addPhotoThumbnailsUsers = () => {
+// const getPhoto = (photoUsers) => photoUsers;
+
+// console.log(getPhoto(photoUsers));
+let createPhotoUsers = '';
+const addPhotoThumbnailsUsers = (photoUsers) => {
   const listFragmentPhoto = document.createDocumentFragment();
-  createPhotoUsers.forEach((element) => {
+  createPhotoUsers = photoUsers;
+  photoUsers.forEach((element) => {
     const pictureItem = pictureTemplate.cloneNode(true);
     const pictureImage = pictureItem.querySelector('.picture__img');
     pictureImage.dataset.id = element.id;
@@ -17,6 +22,7 @@ const addPhotoThumbnailsUsers = () => {
     pictureItem.querySelector('.picture__comments').textContent = element.comments.length;
     listFragmentPhoto.appendChild(pictureItem);
   });
+
   return pictureList.appendChild(listFragmentPhoto);
 };
 
