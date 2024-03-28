@@ -1,5 +1,7 @@
-import {sendSuccessMessage, sendErrorMessage} from '../get-data';
+import {sendData} from '../api';
+import {onSendSuccessMessage, onSendErrorMessage, blockSubmitButton, unblockSubmitButton} from '../api/secondary-functions';
 import {onCloseChangePhoto} from '../upload-photo';
+
 
 export const imgUploadForm = document.querySelector('.img-upload__form');
 export const inputTextHashtag = imgUploadForm.querySelector('.text__hashtags');
@@ -47,24 +49,18 @@ const validateListener = () => {
   imgUploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     if(pristine.validate()) {
-      fetch(
-        'https://31.javascript.htmlacademy.pro/kekstagram',
-        {
-          method: 'POST',
-          body: new FormData(evt.target),
-        })
-        .then((response) => {
-          if (response.ok) {
-            sendSuccessMessage();
-            onCloseChangePhoto();
-          }else{
-            throw new Error ();
-          }
+      blockSubmitButton();
+      sendData(new FormData(evt.target))
+        .then(() => {
+          onSendSuccessMessage();
+          onCloseChangePhoto();
         })
         .catch(() => {
-          throw new Error(
-            sendErrorMessage()
-          );
+          onSendErrorMessage();
+        }
+        )
+        .finally(() => {
+          unblockSubmitButton();
         }
         );
     }
