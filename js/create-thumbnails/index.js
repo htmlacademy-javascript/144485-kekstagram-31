@@ -1,13 +1,12 @@
-import {photoItems} from '../generate-data';
 import {onOpenBigPicture } from '../show-large-picture';
 
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictureList = document.querySelector('.pictures');
-const createPhotoUsers = photoItems();
 
-const addPhotoThumbnailsUsers = () => {
+const addPhotoThumbnailsUsers = (photoUsers) => {
   const listFragmentPhoto = document.createDocumentFragment();
-  createPhotoUsers.forEach((element) => {
+  // createPhotoUsers = photoUsers;
+  photoUsers.forEach((element) => {
     const pictureItem = pictureTemplate.cloneNode(true);
     const pictureImage = pictureItem.querySelector('.picture__img');
     pictureImage.dataset.id = element.id;
@@ -15,18 +14,22 @@ const addPhotoThumbnailsUsers = () => {
     pictureImage.alt = element.description;
     pictureItem.querySelector('.picture__likes').textContent = element.likes;
     pictureItem.querySelector('.picture__comments').textContent = element.comments.length;
-    listFragmentPhoto.appendChild(pictureItem);
+    listFragmentPhoto.append(pictureItem);
   });
-  return pictureList.appendChild(listFragmentPhoto);
+
+  return pictureList.append(listFragmentPhoto);
 };
 
-pictureList.addEventListener('click', (evt) => {
-  const target = evt.target;
-  if (target.closest('.picture')) {
-    evt.preventDefault();
-    const elementPhoto = createPhotoUsers.find((photo) => photo.id === Number(target.dataset.id));
-    onOpenBigPicture(elementPhoto);
-  }
-});
+const elementPhotoListener = (photoUsers) => {
+  pictureList.addEventListener('click', (evt) => {
+    const target = evt.target;
+    if (target.closest('.picture')) {
+      evt.preventDefault();
+      const elementPhoto = photoUsers.find((photo) => photo.id === Number(target.dataset.id));
+      onOpenBigPicture(elementPhoto);
+    }
+  });
 
-export {addPhotoThumbnailsUsers};
+};
+
+export {addPhotoThumbnailsUsers , elementPhotoListener};

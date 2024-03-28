@@ -1,4 +1,9 @@
-const imgUploadForm = document.querySelector('.img-upload__form');
+import {sendData} from '../api';
+import {onSendSuccessMessage, onSendErrorMessage, blockSubmitButton, unblockSubmitButton} from '../api/secondary-functions';
+import {onCloseChangePhoto} from '../upload-photo';
+
+
+export const imgUploadForm = document.querySelector('.img-upload__form');
 export const inputTextHashtag = imgUploadForm.querySelector('.text__hashtags');
 export const commentForm = imgUploadForm.querySelector('.text__description');
 
@@ -40,12 +45,28 @@ pristine.addValidator(inputTextHashtag, onHashtagLimitLength, 'Превышен�
 pristine.addValidator(commentForm, onValidateCommentForm, 'Длина комментария больше 140 символов');
 
 const validateListener = () => {
+
   imgUploadForm.addEventListener('submit', (evt) => {
-    if(pristine.validate()) {
-      imgUploadForm.submit();
-    }
     evt.preventDefault();
+    if(pristine.validate()) {
+      blockSubmitButton();
+      sendData(new FormData(evt.target))
+        .then(() => {
+          onSendSuccessMessage();
+          onCloseChangePhoto();
+        })
+        .catch(() => {
+          onSendErrorMessage();
+        }
+        )
+        .finally(() => {
+          unblockSubmitButton();
+        }
+        );
+    }
   });
 };
 
 export {validateListener};
+
+
