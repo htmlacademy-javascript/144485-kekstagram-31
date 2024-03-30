@@ -35,4 +35,3 @@ function onCloseBigPictureEsc(evt){
 }
 
 export {onOpenBigPicture};
-

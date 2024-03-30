@@ -12,7 +12,6 @@ export const submitButtonText = {
   IDLE: 'Опубликовать',
   SENDING: 'Загрузка...'
 };
-
 export const Method = {
   GET: 'GET',
   POST: 'POST',

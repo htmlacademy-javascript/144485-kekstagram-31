@@ -5,7 +5,6 @@ const pictureList = document.querySelector('.pictures');
 
 const addPhotoThumbnailsUsers = (photoUsers) => {
   const listFragmentPhoto = document.createDocumentFragment();
-  // createPhotoUsers = photoUsers;
   photoUsers.forEach((element) => {
     const pictureItem = pictureTemplate.cloneNode(true);
     const pictureImage = pictureItem.querySelector('.picture__img');

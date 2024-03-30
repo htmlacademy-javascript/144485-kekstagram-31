@@ -3,12 +3,11 @@ import {dataErrorTemplate, sendErrorTemplate, sendFormErrorTemplate, SHOW_ERROR_
 
 const submitButton = document.querySelector('.img-upload__submit');
 
-
-const onSendSuccessClose = () => {
+function onSendSuccessClose() {
   const successMessage = document.querySelector('.success');
   successMessage.remove();
   document.removeEventListener('click', onClickOutModalSuccess);
-};
+}
 
 const onSendErrorMessageClose = () => {
   const errorMessage = document.querySelector('.error');

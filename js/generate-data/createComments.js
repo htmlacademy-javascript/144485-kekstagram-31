@@ -5,7 +5,6 @@ const AVATAR_MIN = 1;
 const AVATAR_MAX = 6;
 const COMMENTS_MIN = 0;
 const COMMENTS_MAX = 30;
-
 const commentsId = createId();
 
 const createComments = () =>({
