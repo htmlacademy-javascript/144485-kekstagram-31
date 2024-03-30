@@ -3,8 +3,15 @@ import {onOpenBigPicture } from '../show-large-picture';
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const pictureList = document.querySelector('.pictures');
 
+const removePhoto = () => {
+  const parentElement = document.querySelector('.pictures');
+  const allPicture = parentElement.querySelectorAll('.picture');
+  allPicture.forEach((element) => element.remove());
+};
+
 const addPhotoThumbnailsUsers = (photoUsers) => {
   const listFragmentPhoto = document.createDocumentFragment();
+  removePhoto();
   photoUsers.forEach((element) => {
     const pictureItem = pictureTemplate.cloneNode(true);
     const pictureImage = pictureItem.querySelector('.picture__img');

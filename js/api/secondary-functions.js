@@ -55,11 +55,16 @@ const onSendErrorMessage = () => {
   document.removeEventListener('keydown', onCloseChangePhotoEsc);
 };
 
-const onShowErrorGetData = () => {
+const onShowErrorGetData = (textError) => {
   const errorFragment = document.createDocumentFragment();
   const errorItem = dataErrorTemplate.cloneNode(true);
+
+
   errorFragment.append(errorItem);
   document.body.append(errorFragment);
+  if(textError){
+    errorItem.querySelector('.data-error__title').textContent = textError;
+  }
   const dataError = document.querySelector('.data-error');
 
   setTimeout(() => {
