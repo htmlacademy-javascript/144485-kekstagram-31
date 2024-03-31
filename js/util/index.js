@@ -1,3 +1,5 @@
+const TIMEOUT_DELAY_DEBOUNCE = 500;
+
 const getRandomInteger = (a, b) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
@@ -20,4 +22,12 @@ const toggleClass = (className, isOpened = true) =>{
   document.body.classList.toggle('modal-open');
 };
 
-export {getRandomInteger, createId, getRandomArrayElement, toggleClass};
+const debounce = (callback, timeoutDelay = TIMEOUT_DELAY_DEBOUNCE) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export {getRandomInteger, createId, getRandomArrayElement, toggleClass, debounce};

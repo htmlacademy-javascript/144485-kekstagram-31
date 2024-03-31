@@ -27,7 +27,7 @@ const onOpenChangePhoto = () => {
   imgUploadancel.addEventListener('click', onCloseChangePhoto);
 };
 
-const selectImage = () => {
+const onSelectImage = () => {
   const selectedFile = imgUploadInput.files[0];
   const fileName = selectedFile.name.toLowerCase();
   const fileUrl = URL.createObjectURL(selectedFile);
@@ -47,7 +47,7 @@ const selectImage = () => {
 };
 
 const onOpenChangePhotoListener = () => {
-  imgUploadInput.addEventListener('change', selectImage);
+  imgUploadInput.addEventListener('change', onSelectImage);
 };
 
 export {onOpenChangePhotoListener, onCloseChangePhoto, onCloseChangePhotoEsc};

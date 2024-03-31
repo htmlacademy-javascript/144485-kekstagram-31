@@ -6,7 +6,7 @@ import {getData} from './api';
 import {addPhotoThumbnailsUsers, elementPhotoListener} from './create-thumbnails';
 import {onShowErrorGetData } from './api/secondary-functions';
 import {showFilterPanel, listenerButtonsFilter} from './filters';
-import {debounce} from './filters/debounce';
+import {debounce} from './util/index';
 
 getData()
   .then((photos) => {
