@@ -66,4 +66,4 @@ const validateListener = () => {
   });
 };
 
-export {validateListener};
+export {validateListener, pristine};

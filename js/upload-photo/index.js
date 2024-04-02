@@ -1,13 +1,15 @@
 import {toggleClass} from '../util';
-import {imgUploadInput, imgUpoadOverlay, imgUploadancel, effectsPreview, effectLevelSliderParrent, uploaPreviewImage, FILE_TYPES} from './uploadPhotoVariables';
+import {pristine} from '../validation-form';
+import {imgUploadInput, imgUpoadOverlay, imgUploadancel, effectsPreview, effectLevelSliderParrent, uploadPreviewImage, FILE_TYPES} from './uploadPhotoVariables';
 import {inputTextHashtag, commentForm, imgUploadForm} from '../validation-form';
 import {onShowErrorGetData } from '../api/secondary-functions';
 
 const onCloseChangePhoto = () => {
+  pristine.reset();
   toggleClass(imgUpoadOverlay, false);
   imgUploadForm.reset();
-  uploaPreviewImage.style.removeProperty('filter');
-  uploaPreviewImage.style.removeProperty('transform');
+  uploadPreviewImage.style.removeProperty('filter');
+  uploadPreviewImage.style.removeProperty('transform');
   document.removeEventListener('keydown', onCloseChangePhotoEsc);
   imgUploadancel.removeEventListener('click', onCloseChangePhoto);
 };
@@ -38,7 +40,7 @@ const onSelectImage = () => {
     return;
   }
 
-  uploaPreviewImage.src = fileUrl;
+  uploadPreviewImage.src = fileUrl;
   effectsPreview.forEach((element) => {
     element.style.backgroundImage = `url(${fileUrl})`;
   });
