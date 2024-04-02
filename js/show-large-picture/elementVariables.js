@@ -8,4 +8,3 @@ export const socialCaption = bigPictureBlock.querySelector('.social__caption');
 export const socialCommentsList = bigPictureBlock.querySelector('.social__comments');
 export const buttonShowMore = bigPictureBlock.querySelector('.social__comments-loader');
 export const socialCommentChild = socialCommentsList.children;
-

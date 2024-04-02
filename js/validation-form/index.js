@@ -2,7 +2,6 @@ import {sendData} from '../api';
 import {onSendSuccessMessage, onSendErrorMessage, blockSubmitButton, unblockSubmitButton} from '../api/secondary-functions';
 import {onCloseChangePhoto} from '../upload-photo';
 
-
 export const imgUploadForm = document.querySelector('.img-upload__form');
 export const inputTextHashtag = imgUploadForm.querySelector('.text__hashtags');
 export const commentForm = imgUploadForm.querySelector('.text__description');
@@ -67,6 +66,4 @@ const validateListener = () => {
   });
 };
 
-export {validateListener};
-
-
+export {validateListener, pristine};

@@ -1,4 +1,4 @@
-import {effectLevelSliderParrent, effectLevelSlider, effectLevelInput, effectChecked, uploaPreviewImage} from './slider-variables';
+import {effectLevelSliderParrent, effectLevelSlider, effectLevelInput, effectChecked, uploadPreviewImage} from './slider-variables';
 import {EFFECTS, DEFAULT_MIN, DEFAULT_MAX, DEFAULT_START } from './effect-data';
 
 const sliderVisableToggle = (isShown = true) => {
@@ -13,14 +13,25 @@ noUiSlider.create(effectLevelSlider, {
     max: DEFAULT_MAX,
   },
   start: DEFAULT_START,
-  connect: 'lower'
+  connect: 'lower',
+  format: {
+    to: function (value) {
+      if (Number.isInteger(value)) {
+        return value.toFixed(0);
+      }
+      return value.toFixed(1);
+    },
+    from: function (value) {
+      return parseFloat(value);
+    },
+  },
 });
 
 const sliderUpdateOptions = (value) => {
   const effect = searhEffect(value, EFFECTS);
   if(!effect){
     sliderVisableToggle();
-    uploaPreviewImage.style.removeProperty('filter');
+    uploadPreviewImage.style.removeProperty('filter');
     return;
   }
   const {min, max, start, step, unit} = effect;
@@ -36,7 +47,7 @@ const sliderUpdateOptions = (value) => {
   effectLevelSlider.noUiSlider.on('update', () => {
     const effectLevelInputValue = effectLevelSlider.noUiSlider.get();
     effectLevelInput.value = effectLevelInputValue;
-    uploaPreviewImage.style.filter = `${effect.style}(${effectLevelInputValue}${unit})`;
+    uploadPreviewImage.style.filter = `${effect.style}(${effectLevelInputValue}${unit})`;
   });
 };
 
