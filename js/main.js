@@ -5,15 +5,13 @@ import {effectCheckedListener} from './slider-effects';
 import {getData} from './api';
 import {addPhotoThumbnailsUsers, elementPhotoListener} from './create-thumbnails';
 import {onShowErrorGetData } from './api/secondary-functions';
-import {showFilterPanel, listenerButtonsFilter} from './filters';
-import {debounce} from './util/index';
+import {listenerButtonsFilter} from './filters';
 
 getData()
   .then((photos) => {
     addPhotoThumbnailsUsers(photos);
     elementPhotoListener(photos);
-    showFilterPanel();
-    listenerButtonsFilter(photos, debounce(addPhotoThumbnailsUsers));
+    listenerButtonsFilter(photos);
   }).catch(() => {
     onShowErrorGetData();
   });
