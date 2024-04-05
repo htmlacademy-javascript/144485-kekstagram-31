@@ -1,5 +1,6 @@
 import {onCloseChangePhotoEsc} from '../upload-photo';
 import {dataErrorTemplate, sendErrorTemplate, sendFormErrorTemplate, SHOW_ERROR_TIME, submitButtonText} from './get-data-variables';
+import {isEscapeKey} from '../util';
 
 const submitButton = document.querySelector('.img-upload__submit');
 
@@ -7,6 +8,7 @@ function onSendSuccessClose() {
   const successMessage = document.querySelector('.success');
   successMessage.remove();
   document.removeEventListener('click', onClickOutModalSuccess);
+  document.removeEventListener('keydown', onSendSuccessMessageCloseEsc);
 }
 
 const onSendErrorMessageClose = () => {
@@ -31,14 +33,14 @@ function onClickOutModalError (evt) {
   onSendErrorMessageClose();
 }
 
-function onSendErrorMessageCloseEsc (evt) {
-  if (evt.key === 'Escape') {
+function onSendErrorMessageCloseEsc () {
+  if (isEscapeKey) {
     onSendErrorMessageClose();
   }
 }
 
-function onSendSuccessMessageCloseEsc (evt) {
-  if (evt.key === 'Escape') {
+function onSendSuccessMessageCloseEsc () {
+  if (isEscapeKey) {
     onSendSuccessClose();
   }
 }

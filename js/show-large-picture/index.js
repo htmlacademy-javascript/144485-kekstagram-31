@@ -1,6 +1,6 @@
 import { bigPictureBlock, bigPictureCancel, bigPictureImg, likesCount, commentTotalCount, socialCaption, socialCommentsList, buttonShowMore} from './elementVariables';
 import {renderComments, onShowMoreComments} from './createComments';
-import {toggleClass} from '../util';
+import {toggleClass, isEscapeKey} from '../util';
 
 const onCloseBigPicture = () => {
   toggleClass(bigPictureBlock, false);
@@ -28,7 +28,7 @@ const onOpenBigPicture = (element) => {
 };
 
 function onCloseBigPictureEsc(evt){
-  if(evt.key === 'Escape'){
+  if(isEscapeKey){
     evt.preventDefault();
     onCloseBigPicture();
   }

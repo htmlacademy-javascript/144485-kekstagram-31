@@ -1,4 +1,4 @@
-import {toggleClass} from '../util';
+import {toggleClass, isEscapeKey} from '../util';
 import {pristine} from '../validation-form';
 import {imgUploadInput, imgUpoadOverlay, imgUploadancel, effectsPreview, effectLevelSliderParrent, uploadPreviewImage, FILE_TYPES} from './uploadPhotoVariables';
 import {inputTextHashtag, commentForm, imgUploadForm} from '../validation-form';
@@ -15,7 +15,7 @@ const onCloseChangePhoto = () => {
 };
 
 function onCloseChangePhotoEsc(evt){
-  if (evt.key === 'Escape' && !(document.activeElement === inputTextHashtag || document.activeElement === commentForm)) {
+  if (isEscapeKey && !(document.activeElement === inputTextHashtag || document.activeElement === commentForm)) {
     onCloseChangePhoto();
   } else {
     evt.stopPropagation();

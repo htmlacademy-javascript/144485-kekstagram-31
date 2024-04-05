@@ -11,7 +11,7 @@ const showFilterPanel = () => {
 
 const debounceRender = debounce(addPhotoThumbnailsUsers);
 
-const setActiveFilter = (evt) => {
+const onSetActiveFilter = (evt) => {
   const target = evt.target;
   const activeButton = document.querySelector('.img-filters__button--active');
 
@@ -44,7 +44,7 @@ function filterChange () {
 }
 
 const listenerButtonsFilter = (photos) => {
-  filtersControlPanel.addEventListener('click', setActiveFilter);
+  filtersControlPanel.addEventListener('click', onSetActiveFilter);
   showFilterPanel();
   puctures = photos;
 };
