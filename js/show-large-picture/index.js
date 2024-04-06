@@ -28,7 +28,7 @@ const onOpenBigPicture = (element) => {
 };
 
 function onCloseBigPictureEsc(evt){
-  if(isEscapeKey){
+  if(isEscapeKey(evt)){
     evt.preventDefault();
     onCloseBigPicture();
   }

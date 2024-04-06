@@ -33,14 +33,14 @@ function onClickOutModalError (evt) {
   onSendErrorMessageClose();
 }
 
-function onSendErrorMessageCloseEsc () {
-  if (isEscapeKey) {
+function onSendErrorMessageCloseEsc (evt) {
+  if (isEscapeKey(evt)) {
     onSendErrorMessageClose();
   }
 }
 
-function onSendSuccessMessageCloseEsc () {
-  if (isEscapeKey) {
+function onSendSuccessMessageCloseEsc (evt) {
+  if (isEscapeKey(evt)) {
     onSendSuccessClose();
   }
 }

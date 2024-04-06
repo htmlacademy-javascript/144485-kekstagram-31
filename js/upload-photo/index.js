@@ -15,7 +15,7 @@ const onCloseChangePhoto = () => {
 };
 
 function onCloseChangePhotoEsc(evt){
-  if (isEscapeKey && !(document.activeElement === inputTextHashtag || document.activeElement === commentForm)) {
+  if (isEscapeKey(evt) && !(document.activeElement === inputTextHashtag || document.activeElement === commentForm)) {
     onCloseChangePhoto();
   } else {
     evt.stopPropagation();
