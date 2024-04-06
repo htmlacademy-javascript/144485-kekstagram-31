@@ -1,5 +1,5 @@
 import {toggleClass, isEscapeKey} from '../util';
-import {pristine} from '../validation-form';
+import {pristine, onValidateListener} from '../validation-form';
 import {imgUploadInput, imgUpoadOverlay, imgUploadancel, effectsPreview, effectLevelSliderParrent, uploadPreviewImage, FILE_TYPES} from './uploadPhotoVariables';
 import {inputTextHashtag, commentForm, imgUploadForm} from '../validation-form';
 import {onShowErrorGetData } from '../api/secondary-functions';
@@ -12,6 +12,7 @@ const onCloseChangePhoto = () => {
   uploadPreviewImage.style.removeProperty('transform');
   document.removeEventListener('keydown', onCloseChangePhotoEsc);
   imgUploadancel.removeEventListener('click', onCloseChangePhoto);
+  imgUploadForm.removeEventListener('submit', onValidateListener);
 };
 
 function onCloseChangePhotoEsc(evt){
@@ -27,6 +28,7 @@ const onOpenChangePhoto = () => {
   effectLevelSliderParrent.classList.add('hidden');
   document.addEventListener('keydown', onCloseChangePhotoEsc);
   imgUploadancel.addEventListener('click', onCloseChangePhoto);
+  imgUploadForm.addEventListener('submit', onValidateListener);
 };
 
 const onSelectImage = () => {
