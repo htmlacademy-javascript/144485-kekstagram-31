@@ -1,5 +1,3 @@
-const scaleControlSmaller = document.querySelector('.scale__control--smaller');
-const scaleControlBigger = document.querySelector('.scale__control--bigger');
 const scaleControlValue = document.querySelector('.scale__control--value');
 const uploadPreviewImage = document.querySelector('.img-upload__preview img');
 
@@ -23,9 +21,4 @@ const onDecreaseScale = () => {
   uploadPreviewImage.style.transform = `scale(${scaleLimited / 100})`;
 };
 
-const scaleListener = () => {
-  scaleControlBigger.addEventListener('click', onIncreaseScale);
-  scaleControlSmaller.addEventListener('click', onDecreaseScale);
-};
-
-export {scaleListener};
+export {onIncreaseScale, onDecreaseScale};

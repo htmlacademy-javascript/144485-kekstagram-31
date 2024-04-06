@@ -1,8 +1,9 @@
 import {toggleClass, isEscapeKey} from '../util';
 import {pristine, onValidateListener} from '../validation-form';
-import {imgUploadInput, imgUpoadOverlay, imgUploadancel, effectsPreview, effectLevelSliderParrent, uploadPreviewImage, FILE_TYPES} from './uploadPhotoVariables';
+import {imgUploadInput, imgUpoadOverlay, imgUploadancel, effectsPreview, effectLevelSliderParrent, uploadPreviewImage, FILE_TYPES, scaleControlBigger, scaleControlSmaller} from './uploadPhotoVariables';
 import {inputTextHashtag, commentForm, imgUploadForm} from '../validation-form';
 import {onShowErrorGetData } from '../api/secondary-functions';
+import {onIncreaseScale, onDecreaseScale} from '../add-effects-scale';
 
 const onCloseChangePhoto = () => {
   pristine.reset();
@@ -13,6 +14,8 @@ const onCloseChangePhoto = () => {
   document.removeEventListener('keydown', onCloseChangePhotoEsc);
   imgUploadancel.removeEventListener('click', onCloseChangePhoto);
   imgUploadForm.removeEventListener('submit', onValidateListener);
+  scaleControlBigger.removeEventListener('click', onIncreaseScale);
+  scaleControlSmaller.removeEventListener('click', onDecreaseScale);
 };
 
 function onCloseChangePhotoEsc(evt){
@@ -29,6 +32,8 @@ const onOpenChangePhoto = () => {
   document.addEventListener('keydown', onCloseChangePhotoEsc);
   imgUploadancel.addEventListener('click', onCloseChangePhoto);
   imgUploadForm.addEventListener('submit', onValidateListener);
+  scaleControlBigger.addEventListener('click', onIncreaseScale);
+  scaleControlSmaller.addEventListener('click', onDecreaseScale);
 };
 
 const onSelectImage = () => {

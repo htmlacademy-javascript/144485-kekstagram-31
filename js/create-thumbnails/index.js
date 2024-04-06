@@ -35,7 +35,6 @@ const elementPhotoListener = (photoUsers) => {
       onOpenBigPicture(elementPhoto);
     }
   });
-
 };
 
 export {addPhotoThumbnailsUsers , elementPhotoListener};
