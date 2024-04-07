@@ -1,6 +1,4 @@
 import {onOpenChangePhotoListener} from './upload-photo';
-import {validateListener} from './validation-form';
-import {scaleListener} from './add-effects-scale';
 import {effectCheckedListener} from './slider-effects';
 import {getData} from './api';
 import {addPhotoThumbnailsUsers, elementPhotoListener} from './create-thumbnails';
@@ -17,6 +15,4 @@ getData()
   });
 
 effectCheckedListener();
-scaleListener();
-validateListener();
 onOpenChangePhotoListener();

@@ -1,8 +1,9 @@
-import {toggleClass} from '../util';
-import {pristine} from '../validation-form';
-import {imgUploadInput, imgUpoadOverlay, imgUploadancel, effectsPreview, effectLevelSliderParrent, uploadPreviewImage, FILE_TYPES} from './uploadPhotoVariables';
+import {toggleClass, isEscapeKey} from '../util';
+import {pristine, onValidateListener} from '../validation-form';
+import {imgUploadInput, imgUpoadOverlay, imgUploadancel, effectsPreview, effectLevelSliderParrent, uploadPreviewImage, FILE_TYPES, scaleControlBigger, scaleControlSmaller} from './uploadPhotoVariables';
 import {inputTextHashtag, commentForm, imgUploadForm} from '../validation-form';
 import {onShowErrorGetData } from '../api/secondary-functions';
+import {onIncreaseScale, onDecreaseScale} from '../add-effects-scale';
 
 const onCloseChangePhoto = () => {
   pristine.reset();
@@ -12,10 +13,13 @@ const onCloseChangePhoto = () => {
   uploadPreviewImage.style.removeProperty('transform');
   document.removeEventListener('keydown', onCloseChangePhotoEsc);
   imgUploadancel.removeEventListener('click', onCloseChangePhoto);
+  imgUploadForm.removeEventListener('submit', onValidateListener);
+  scaleControlBigger.removeEventListener('click', onIncreaseScale);
+  scaleControlSmaller.removeEventListener('click', onDecreaseScale);
 };
 
 function onCloseChangePhotoEsc(evt){
-  if (evt.key === 'Escape' && !(document.activeElement === inputTextHashtag || document.activeElement === commentForm)) {
+  if (isEscapeKey(evt) && !(document.activeElement === inputTextHashtag || document.activeElement === commentForm)) {
     onCloseChangePhoto();
   } else {
     evt.stopPropagation();
@@ -27,6 +31,9 @@ const onOpenChangePhoto = () => {
   effectLevelSliderParrent.classList.add('hidden');
   document.addEventListener('keydown', onCloseChangePhotoEsc);
   imgUploadancel.addEventListener('click', onCloseChangePhoto);
+  imgUploadForm.addEventListener('submit', onValidateListener);
+  scaleControlBigger.addEventListener('click', onIncreaseScale);
+  scaleControlSmaller.addEventListener('click', onDecreaseScale);
 };
 
 const onSelectImage = () => {

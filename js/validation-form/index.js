@@ -43,27 +43,25 @@ pristine.addValidator(inputTextHashtag, onUniqueHashtag, 'Хэштеги пов�
 pristine.addValidator(inputTextHashtag, onHashtagLimitLength, 'Превышено количество хэштегов');
 pristine.addValidator(commentForm, onValidateCommentForm, 'Длина комментария больше 140 символов');
 
-const validateListener = () => {
-
-  imgUploadForm.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    if(pristine.validate()) {
-      blockSubmitButton();
-      sendData(new FormData(evt.target))
-        .then(() => {
-          onSendSuccessMessage();
-          onCloseChangePhoto();
-        })
-        .catch(() => {
-          onSendErrorMessage();
-        }
-        )
-        .finally(() => {
-          unblockSubmitButton();
-        }
-        );
-    }
-  });
+const onValidateListener = (evt) => {
+  evt.preventDefault();
+  if(pristine.validate()) {
+    blockSubmitButton();
+    sendData(new FormData(evt.target))
+      .then(() => {
+        onSendSuccessMessage();
+        onCloseChangePhoto();
+      })
+      .catch(() => {
+        onSendErrorMessage();
+      }
+      )
+      .finally(() => {
+        unblockSubmitButton();
+      }
+      );
+  }
 };
 
-export {validateListener, pristine};
+
+export {onValidateListener, pristine};
